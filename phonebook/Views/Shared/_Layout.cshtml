@@ -4,8 +4,25 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Scripts/Chosen/chosen.css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jquery-custom")
+    @Scripts.Render("~/bundles/chosen-jquery")
+    @Scripts.Render("~/bundles/jquery-form")
+    @Scripts.Render("~/bundles/jquery-validade")
+    @Scripts.Render("~/bundles/jquery-princiformat")
+    @Scripts.Render("~/bundles/jquery-maskedinput")
+    @Scripts.Render("~/bundles/utilidades")
     @Scripts.Render("~/bundles/modernizr")
+
+    <script>
+        $(function () {
+            Utilidades.setup();
+        });
+    </script>
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -23,6 +40,8 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Person", "Index", "People")</li>
+                    <li>@Html.ActionLink("Company", "Index", "Companies")</li>
                 </ul>
             </div>
         </div>
@@ -35,8 +54,11 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <script>
+        $('select').chosen();
+    </script>
+
     @RenderSection("scripts", required: false)
 </body>
 </html>
