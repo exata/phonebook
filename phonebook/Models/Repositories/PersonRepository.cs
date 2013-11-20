@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -9,6 +10,8 @@ namespace phonebook.Models.Repositories
     {
 
         PhonebookContext db = new PhonebookContext();
+        
+        public DbSet<Person> People { get; set; }
 
         public IEnumerable<Person> All(string busca, string email, string phone, string companyid)
         {
