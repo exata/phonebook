@@ -40,3 +40,27 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
+
+.modal{
+    font-family:"OpenSansRegular";
+}
+.modal h3 i{
+    margin-top:4px !important;
+}
+.modal form i{
+    margin-top:2px !important;
+}
+
+.modal-body{
+    font-size: 110%;
+    max-height: 420px;
+    overflow-y: auto;
+}
+.modal-body{
+    overflow-x: hidden;
+}
+
+.modal-footer{
+    text-align: center;
+
+}

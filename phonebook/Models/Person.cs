@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace phonebook.Models
 {
@@ -16,6 +17,8 @@ namespace phonebook.Models
         [Required(ErrorMessage="An Company is Required")]
         public int CompanyId { get; set; }
 
+        [DataType(DataType.EmailAddress)]
+        //[Remote("DoesUserEmailExist", "People", HttpMethod = "POST", ErrorMessage = "Email address already exists. Please enter a different Email address.")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
@@ -29,4 +32,5 @@ namespace phonebook.Models
         public virtual Company Company { get; set; }
 
     }
+
 }

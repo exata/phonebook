@@ -7,6 +7,7 @@
 
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Scripts/Chosen/chosen.css")
+    @Styles.Render("~/Content/Site.css")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jquery-custom")
     @Scripts.Render("~/bundles/chosen-jquery")
@@ -59,6 +60,10 @@
         $('select').chosen();
     </script>
 
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jquery-maskedinput")
+    @Scripts.Render("~/bundles/jquery-princiformat")
+    @Scripts.Render("~/bundles/utilidades")
     @RenderSection("scripts", required: false)
 </body>
 </html>

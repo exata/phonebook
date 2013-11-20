@@ -11,6 +11,9 @@ namespace phonebook
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-1.10.2.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/people_create").Include(
+            "~/Scripts/Module_Scripts/People/create.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/jquery-custom").Include(
                         "~/Scripts/jquery-ui-1.9.0.custom.min.js"));
             

@@ -7,7 +7,7 @@
 
     setup: function () {
         $(function () {
-             //Aplica mascaras no sistema
+            //Aplica mascaras no sistema
             $(".mask-telefone,.mask-celular,.mask-fone").mask("(99) 9999-9999?9");
             $(".mask-data").mask("99/99/9999");
             $(".mask-data-hora").mask("99/99/9999 99:99");
@@ -107,11 +107,76 @@
         });
     },
 
-   
+    alerta: function (mensagem, callback) {
+        var okButtonTxt = "Ok";
+        var confirmModal = $('<div class="modal hide fade">' + 
+            '<div class="modal-body">' +
+                '<a class="close" data-dismiss="modal" >&times;</a>' +
+                '<p>' + mensagem + '</p>' +
+            '</div>' +
+                '<div class="modal-footer">' +
+                    '<center><a href="#" id="okButton" class="btn btn-primary">' +
+                    okButtonTxt +
+                            '</a>' +
+                    '</center>' +
+                '</div>' +
+            '</div>');
+
+        confirmModal.find('#okButton').click(function (event) {
+
+            if (callback != undefined) {
+                callback();
+            }
+
+            confirmModal.modal('hide');
+        });
+
+        confirmModal.modal("show").appendTo("body");
+
+    },
+
+    confirma: function (mensagem, callback, cancelAction) {
+        var heading = "";
+        var cancelbuttontxt = 'cancelar';
+        var okbuttontxt = 'confirmar';
+        var confirmmodal = $('<div class="modal fade">' +
+            '<div class="modal-header hide">' +
+            '<h3>' + heading + '</h3>' +
+            '</div>' +
+            '<div class="modal-body">' +
+            '<a class="close" data-dismiss="modal" >&times;</a>' +
+            '<p>' + mensagem + '</p>' +
+            '</div>' +
+            '<div class="modal-footer">' +
+            '<a href="#" id="cancelbutton" class="btn btn-danger" data-dismiss="modal">' +
+            cancelbuttontxt +
+            '</a>' +
+            '<a href="#" id="okbutton" class="btn btn-primary">' +
+            okbuttontxt +
+            '</a>' +
+            '</div>' +
+            '</div>');
+        
+        confirmModal.find('#okButton').click(function (event) {
+            callback();
+            confirmModal.modal('hide');
+        });
+
+        confirmModal.find('#cancelButton').click(function (event) {
+            if (!(cancelAction == undefined)) {
+                cancelAction();
+            }
+            confirmModal.modal('hide');
+        });
+
+        confirmModal.modal('show').appendTo('body');
+    }
+}
+
     /**
      * Inicializa todas as acoes padroes
      **/
-}
+
     
 //    validaEmail: function (email) {
 //        if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)))

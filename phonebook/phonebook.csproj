@@ -159,6 +159,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Database.mdf" />
+    <Content Include="App_Data\Database_log.ldf">
+      <DependentUpon>Database.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -184,6 +188,7 @@
     <Content Include="Scripts\Chosen\index.html" />
     <Content Include="Scripts\Chosen\index.proto.html" />
     <Content Include="Scripts\Chosen\options.html" />
+    <Content Include="Scripts\Module_Scripts\People\create.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-ui-1.9.0.custom.min.js" />

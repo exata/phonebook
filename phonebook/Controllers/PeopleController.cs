@@ -15,10 +15,75 @@ namespace phonebook.Controllers
         private PhonebookContext db = new PhonebookContext();
 
         // GET: /People/
-        public ActionResult Index()
+        public ActionResult Index(string busca, string email, string phone)
         {
             var people = db.People.Include(p => p.Company);
+            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name");
+
+            if (!string.IsNullOrEmpty(busca))
+            {
+                var result = from e in db.People
+                             where e.Name.Contains(busca)
+                             select e;
+
+                return View(result.ToList());
+            }
+
+            if (!string.IsNullOrEmpty(email))
+            {
+                var result = from e in db.People
+                             where e.Email.Contains(email)
+                             select e;
+
+                return View(result.ToList());
+            }
+
+            if (!string.IsNullOrEmpty(phone))
+            {
+                var result = from e in db.People
+                             where e.Phone.Contains(phone)
+                             select e;
+
+                return View(result.ToList());
+            }
+
+            //Search(busca, email, phone);
+
             return View(people.ToList());
+        }
+
+        public ActionResult Search(string busca, string email, string phone)
+        {
+            var people = db.People.Include(p => p.Company);
+            if (!string.IsNullOrEmpty(busca))
+            {
+               var result = from e in db.People
+                             where e.Name.Contains(busca)
+                             select e;
+
+                return View(result.ToList());
+            }
+
+            if (!string.IsNullOrEmpty(email))
+            {
+                var result = from e in db.People
+                             where e.Email.Contains(email)
+                             select e;
+
+                return View(result.ToList());
+            }
+
+            if (!string.IsNullOrEmpty(phone))
+            {
+                var result = from e in db.People
+                             where e.Phone.Contains(phone)
+                             select e;
+
+                return View(result.ToList());
+            }
+            
+            return View(people.ToList());
+            
         }
 
         // GET: /People/Details/5
@@ -52,6 +117,7 @@ namespace phonebook.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 db.People.Add(person);
                 db.SaveChanges();
                 return RedirectToAction("Index");
