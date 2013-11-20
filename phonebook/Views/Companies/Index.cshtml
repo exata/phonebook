@@ -8,7 +8,45 @@
 
 <p>
     @Html.ActionLink("Create New", "Create")
+    &nbsp;&nbsp;&nbsp;<a href="#" class="btn btn-info showSearch"><i class="icon icon-chevron-down"></i>Show/Hide Search</a>
 </p>
+<style type="text/css">
+    #frmSearch {
+        display: block;
+    }
+</style>
+
+@using (Html.BeginForm("Index", "Companies", FormMethod.Post, new { id = "frmSearch" }))
+{
+    <fieldset class="form-group search-field">
+        <legend>Search</legend>
+        <table>
+            <tr>
+                <th>
+                    @Html.Label("Name")<br />
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    @Html.TextBox("busca", null, new { @class = "busca", @placeholder = "buscar" })
+                </td>
+                <td class="right">
+                    <button type="submit" class="btn btn-success searchAction">
+                        <i class="icon icon-search"></i>
+                        Search
+                    </button>
+                    <button class="clearAction btn btn-default" onclick="this.form.reset();return false;">
+                        <i class="icon icon-search"></i>
+                        Clear
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+
+}
+<div class="clearfix"></div>
+<br />
 <table class="table">
     <tr>
         <th>
@@ -31,3 +69,7 @@
 }
 
 </table>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/people_create")
+}

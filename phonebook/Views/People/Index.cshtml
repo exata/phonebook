@@ -46,7 +46,7 @@
                     @Html.TextBox("Email")
                 </td>
                 <td>
-                    @Html.TextBox("Phone")
+                    @Html.TextBox("Phone", null, new { @class = "mask-telefone" })
                 </td>
                 <td>
                     @Html.DropDownList("CompanyId", "Todos")

@@ -15,8 +15,14 @@ namespace phonebook.Controllers
         private PhonebookContext db = new PhonebookContext();
 
         // GET: /Companies/
-        public ActionResult Index()
+        public ActionResult Index(string busca)
         {
+            if(!string.IsNullOrEmpty(busca)){
+                var result = from e in db.Companies
+                             where e.Name.Contains(busca)
+                             select e;
+                return View(result.ToList());
+            }
             return View(db.Companies.ToList());
         }
 
