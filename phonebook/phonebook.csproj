@@ -156,6 +156,7 @@
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\PhonebookContext.cs" />
+    <Compile Include="Models\Repositories\PersonRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

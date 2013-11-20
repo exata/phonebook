@@ -7,83 +7,21 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using phonebook.Models;
+using phonebook.Models.Repositories;
 
 namespace phonebook.Controllers
 {
     public class PeopleController : Controller
     {
         private PhonebookContext db = new PhonebookContext();
+        private PersonRepository repo = new PersonRepository();
 
         // GET: /People/
-        public ActionResult Index(string busca, string email, string phone)
+        public ActionResult Index(string busca, string email, string phone, string companyid)
         {
             var people = db.People.Include(p => p.Company);
             ViewBag.CompanyId = new SelectList(db.Companies, "Id", "Name");
-
-            if (!string.IsNullOrEmpty(busca))
-            {
-                var result = from e in db.People
-                             where e.Name.Contains(busca)
-                             select e;
-
-                return View(result.ToList());
-            }
-
-            if (!string.IsNullOrEmpty(email))
-            {
-                var result = from e in db.People
-                             where e.Email.Contains(email)
-                             select e;
-
-                return View(result.ToList());
-            }
-
-            if (!string.IsNullOrEmpty(phone))
-            {
-                var result = from e in db.People
-                             where e.Phone.Contains(phone)
-                             select e;
-
-                return View(result.ToList());
-            }
-
-            //Search(busca, email, phone);
-
-            return View(people.ToList());
-        }
-
-        public ActionResult Search(string busca, string email, string phone)
-        {
-            var people = db.People.Include(p => p.Company);
-            if (!string.IsNullOrEmpty(busca))
-            {
-               var result = from e in db.People
-                             where e.Name.Contains(busca)
-                             select e;
-
-                return View(result.ToList());
-            }
-
-            if (!string.IsNullOrEmpty(email))
-            {
-                var result = from e in db.People
-                             where e.Email.Contains(email)
-                             select e;
-
-                return View(result.ToList());
-            }
-
-            if (!string.IsNullOrEmpty(phone))
-            {
-                var result = from e in db.People
-                             where e.Phone.Contains(phone)
-                             select e;
-
-                return View(result.ToList());
-            }
-            
-            return View(people.ToList());
-            
+            return View(repo.All(busca, email, phone, companyid));
         }
 
         // GET: /People/Details/5
